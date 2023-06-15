@@ -1,0 +1,8 @@
+---
+a: radha
+b: ram
+c: /tmp/radha
+d: 5555
+e: /bin/bash
+f: "a normal user"
+...

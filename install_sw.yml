@@ -1,0 +1,11 @@
+---
+- name: install s/w on remote servers
+  hosts: all
+  tasks:
+    - name: install s/w
+      apt:
+        name: "{{a}}"
+        state: "{{b}}"
+        update_cache: "{{c}}"
+...
+

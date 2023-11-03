@@ -1,0 +1,29 @@
+---
+- name: implementing handlers
+  hosts: all
+  tasks:
+    - name: install apache2
+      apt:
+        name: apache2
+        state: present
+        update_cache: yes
+      notify: check uri response
+    - name: edit index.html file
+      copy:
+        content: "wellcome to ramgaru"
+        dest: /var/www/html/index.html
+      notify: restart apache2
+  handlers:
+    - name: restart apache2
+      service:
+        name: apache2
+        state: restarted
+    - name: check uri response
+      uri:
+        url: "{{item}}"
+        status_code: 200
+      with_items:
+        - http://172.31.10.166
+        - http://172.31.11.249
+...
+

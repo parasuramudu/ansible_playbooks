@@ -1,0 +1,11 @@
+---
+- name: Configure Tomcat 9
+  hosts: all
+  tasks:
+    - include_tasks: install-tomcat.yml
+    - include_tasks: copy-config.yml
+    - include_tasks: change-port.yml
+    - include_tasks: restart-service.yml
+    - include_tasks: pause.yml
+    - include_tasks: check-response.yml
+

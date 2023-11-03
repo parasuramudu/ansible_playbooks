@@ -1,0 +1,14 @@
+---
+- name: git tree maven
+  hosts: all
+  tasks:
+    - name: s/ws
+      apt:
+        name: "{{item}}"
+        state: present
+        update_cache: yes
+      with_items:
+        - git
+        - tree
+        - maven
+...

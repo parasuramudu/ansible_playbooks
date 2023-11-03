@@ -1,0 +1,20 @@
+---
+- name: implementing tags
+  hosts: all
+  tasks:
+    - name: create user
+      user:
+        name: ramu
+        password: ram
+      tags: user_create
+    - name: install tree
+      apt:
+        name: tree
+        state: present
+        update_cache: yes
+      tags: install_tree
+    - name: copy password file
+      copy:
+        src: /etc/passwd
+        dest: /tmp
+...

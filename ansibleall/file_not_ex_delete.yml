@@ -1,0 +1,17 @@
+---
+- name: if file not exicutable delete
+  hosts: all
+  tasks:
+    - name: check file exicutable or not
+      stat:
+        path: f1
+      register: b
+    - name: display the above module output
+      debug:
+        var: b
+    - name: if file not ex delete
+      file:
+        dest: f1
+        state: touch
+      when: b.stat.exists == false
+...

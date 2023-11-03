@@ -1,0 +1,22 @@
+---
+- name: i want to exicute specific module or all untaged modules
+  hosts: all
+  tasks:
+    - name: install git
+      apt:
+        name: git
+        state: present
+        update_cache: yes
+      tags: install_git
+    - name: install maven
+      apt:
+        name: maven
+        state: present
+        update_cache: yes
+      tags: install_maven
+    - name: install tree
+      apt:
+        name: tree
+        state: present
+        update_cache: no
+...

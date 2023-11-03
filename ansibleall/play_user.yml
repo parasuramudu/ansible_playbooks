@@ -1,0 +1,20 @@
+---
+- name: user creation
+  hosts: all
+  vars:
+    - a: ram
+    - b: ram
+    - c: 1114
+    - d: /home/ram
+    - e: /bin/bash
+    - f: "this is ram user"
+  tasks:
+    - name: usermod
+      user:
+        name: "{{a}}"
+        password: "{{b}}"
+        uid: "{{c}}"
+        home: "{{d}}"
+        shell: "{{e}}"
+        comment: "{{f}}"
+... 

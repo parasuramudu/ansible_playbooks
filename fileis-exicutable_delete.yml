@@ -1,0 +1,22 @@
+---
+- name: if the file1 is exicutable then delete
+  hosts: all
+  tasks:
+    - name: file not exists
+      file:
+        name: /home/ubuntu/file1
+        state: touch
+    - name: check file1 having exicutable permissions or not
+      stat:
+        path: /home/ubuntu/file1
+      register: b
+    - name: display the output of above module
+      debug:
+        var: b
+    - name: file exists
+      file:
+        name: /home/ubuntu/file1
+        state: absent
+      when: b.stat.executable == true
+
+...

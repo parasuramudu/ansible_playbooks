@@ -1,14 +1,29 @@
 ---
-- name: user creation on all servers
-  hosts: servers
-  tasks: 
-    - name: user creation
+- name: Create User with Group
+  hosts: all
+  become: yes
+
+  vars:
+    username: ramu
+    uid: 1001  # User ID
+    primary_group: ramugroup  # Primary group name
+
+  tasks:
+    - name: Create primary group
+      group:
+        name: "{{ primary_group }}"
+        state: present
+      become: yes
+
+    - name: Create user with primary group
       user:
-        name: ravi
-        password: ram
-        uid: 2222
-        comment: "a normal user"
-        home: /tmp/ravi
+        name: "{{ username }}"
+        password: ramu
+        uid: "{{ uid }}"
+        comment: "this is a ramu"
+        group: "{{ primary_group }}"
+        createhome: yes
+        home: "/home/{{ username }}"
         shell: /bin/bash
-...
+      become: yes
 
